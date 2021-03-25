@@ -57,6 +57,7 @@ const PageHeading = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
   text-transform: uppercase;
   height: 100%;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
 
   h1 {
     margin-bottom: 0.5rem;
@@ -65,5 +66,16 @@ const PageHeading = styled.div`
   h3 {
     font-family: ${({ theme }) => theme.fonts.sans};
     font-size: 0.8rem;
+  }
+
+  @media (min-width: 992px) {
+    h1 {
+      font-size: 8rem;
+      margin-bottom: 1.4rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 `
