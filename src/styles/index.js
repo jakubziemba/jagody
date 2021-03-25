@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.section`
   display: flex;
-  flex-direction: ${({ direction }) => direction};
+  flex-direction: column;
   width: 100%;
   margin: 0;
   padding: 1rem;
