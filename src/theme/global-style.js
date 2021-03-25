@@ -28,4 +28,13 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100vh;
   }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: ${({ theme }) => theme.fonts.serif};
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
 `
