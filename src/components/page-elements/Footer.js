@@ -13,8 +13,8 @@ const FooterWrapper = styled.footer`
   align-items: center;
   width: 100%;
   height: 3rem;
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.fonts.sans};
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 `
