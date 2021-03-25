@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Bona Nova";
+  src: url("../fonts/BonaNova-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bona Nova";
+  src: url("../fonts/BonaNova-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Metropolis";
+  src: url("../fonts/Metropolis-Bold.woff") format("woff"),
+    url("../fonts/Metropolis-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-display: swap;
+}
