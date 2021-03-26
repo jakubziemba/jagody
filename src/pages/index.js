@@ -3,7 +3,46 @@ import { graphql, useStaticQuery } from 'gatsby'
 import About from 'components/page-elements/About'
 import BackgroundImage from 'gatsby-background-image'
 import React from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
+
+const transition = { duration: 1.1, ease: [0.6, 0.01, -0.05, 1.05] }
+
+const mainTitle = {
+  initial: { y: 0 },
+  animate: {
+    y: 0,
+    transition: {
+      delayChildren: 0.5,
+      staggerChildren: 0.04,
+      staggerDirection: -1,
+    },
+  },
+}
+
+const subTitle = {
+  initial: { y: 0 },
+  animate: {
+    y: 0,
+    transition: {
+      delay: 0.6,
+      delayChildren: 0.6,
+      staggerChildren: 0.04,
+      staggerDirection: 1,
+    },
+  },
+}
+const letter = {
+  initial: {
+    y: 400,
+  },
+  animate: {
+    y: 0,
+    transition: { ...transition },
+  },
+}
+
+const costam = 'eloelo3210'
 
 export default function Home() {
   const data = useStaticQuery(
@@ -34,8 +73,38 @@ export default function Home() {
       <BackgroundImage Tag='section' fluid={imageData}>
         <Wrapper>
           <PageHeading>
-            <h1>{title}</h1>
-            <h3>{subtitle}</h3>
+            <motion.div style={{ overflow: 'hidden' }}>
+              <motion.h1
+                variants={mainTitle}
+                initial='initial'
+                animate='animate'
+              >
+                {title.split('').map((char, index) => {
+                  return (
+                    <Span key={char + '-' + index} variants={letter}>
+                      {char}
+                    </Span>
+                  )
+                })}
+              </motion.h1>
+            </motion.div>
+            <motion.div style={{ overflow: 'hidden' }}>
+              <motion.h3
+                variants={subTitle}
+                initial='initial'
+                animate='animate'
+              >
+                {subtitle.split('').map((char, index) => {
+                  // return space in sentence
+                  if (char === ' ') return ' '
+                  return (
+                    <Span key={char + '-' + index} variants={letter}>
+                      {char}
+                    </Span>
+                  )
+                })}
+              </motion.h3>
+            </motion.div>
           </PageHeading>
         </Wrapper>
       </BackgroundImage>
@@ -78,4 +147,9 @@ const PageHeading = styled.div`
       font-size: 1.5rem;
     }
   }
+`
+
+const Span = styled(motion.span)`
+  display: inline-block;
+  position: relative;
 `
