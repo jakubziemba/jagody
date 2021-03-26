@@ -1,5 +1,3 @@
-// import { JumbotronWrapper, PageHeading, Span } from 'styles'
-
 import BackgroundImage from 'gatsby-background-image'
 import React from 'react'
 import { motion } from 'framer-motion'
