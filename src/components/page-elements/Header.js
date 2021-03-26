@@ -1,11 +1,16 @@
 import { Link } from 'gatsby'
 import MenuIconSvg from '../../assets/menu-icon.inline.svg'
 import React from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
+const variants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { delay: 2 } },
+}
 export default function Header() {
   return (
-    <Nav>
+    <Nav variants={variants} initial='initial' animate='animate'>
       <Logo>
         <Link to='/'>Jagodajnia</Link>
       </Logo>
@@ -22,7 +27,7 @@ export default function Header() {
   )
 }
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   display: flex;
   justify-content: center;
   align-items: center;
