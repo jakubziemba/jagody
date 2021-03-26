@@ -8,9 +8,9 @@ export default function Plantacja() {
   const data = useStaticQuery(
     graphql`
       query {
-        placeholderImage: file(relativePath: { eq: "jumbo.jpeg" }) {
+        placeholderImage: file(relativePath: { eq: "haskap-plantacja.jpeg" }) {
           childImageSharp {
-            fluid(quality: 100) {
+            fluid(quality: 80, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

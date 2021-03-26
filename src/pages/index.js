@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
 import About from 'components/page-elements/About'
-// import { Jumbotron } from 'styles'
 import Jumbotron from 'components/page-elements/Jumbotron'
 import React from 'react'
 
@@ -9,9 +8,9 @@ export default function Home() {
   const data = useStaticQuery(
     graphql`
       query {
-        placeholderImage: file(relativePath: { eq: "jumbo.jpeg" }) {
+        placeholderImage: file(relativePath: { eq: "index.jpeg" }) {
           childImageSharp {
-            fluid(quality: 100) {
+            fluid(quality: 80, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
