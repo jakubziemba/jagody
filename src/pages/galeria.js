@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-import { Jumbotron } from 'styles'
+import Jumbotron from 'components/page-elements/Jumbotron'
 import React from 'react'
 
 export default function Galeria() {
