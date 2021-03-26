@@ -7,7 +7,7 @@ export const theme = {
     secondary: '#ffffff',
   },
   fonts: {
-    sans: '"Metropolis", sans-serif',
+    sans: '"HK Grotesk", sans-serif',
     serif: '"Bona Nova", serif',
   },
 }
