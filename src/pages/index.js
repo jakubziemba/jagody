@@ -88,7 +88,7 @@ export default function Home() {
                 })}
               </motion.h1>
             </motion.div>
-            <motion.div style={{ overflow: 'hidden' }}>
+            <motion.div style={{ overflow: 'hidden', paddingBottom: '0.2rem' }}>
               <motion.h3
                 variants={subTitle}
                 initial='initial'
@@ -133,8 +133,10 @@ const PageHeading = styled.div`
   }
 
   h3 {
-    font-family: ${({ theme }) => theme.fonts.sans};
+    font-family: ${({ theme }) => theme.fonts.serif};
+    text-transform: uppercase;
     font-size: 0.8rem;
+    /* padding-bottom: 0.5rem; */
   }
 
   @media (min-width: 992px) {
