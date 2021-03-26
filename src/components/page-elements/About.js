@@ -13,6 +13,7 @@ export default function About() {
             quality='100'
             alt='Marcin Wydra'
             placeholder='blurred'
+            layout='fullWidth'
           />
         </ImageWrapper>
         <Text>
@@ -44,11 +45,11 @@ const Text = styled.div`
   font-family: ${({ theme }) => theme.fonts.sans};
   color: ${({ theme }) => theme.colors.primary};
   font-size: 1.3rem;
-  line-height: 1.5;
+  line-height: 1.8;
 
   @media (min-width: 992px) {
     margin-left: 2rem;
-    padding: 1rem;
+    padding: 0.23rem;
     font-size: 1.6rem;
     width: 50%;
   }
@@ -57,7 +58,6 @@ const ImageWrapper = styled.div`
   margin: 1rem 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
 
   @media (min-width: 992px) {
     width: 50%;
