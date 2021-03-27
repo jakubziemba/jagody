@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   }
 
   html {
@@ -29,6 +30,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100vh;
+    font-family: ${({ theme }) => theme.fonts.sans};
+    text-rendering: optimizeLegibility;
   }
 
   h1,h2,h3,h4,h5,h6 {
