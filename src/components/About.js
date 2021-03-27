@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
-import { Wrapper } from '../../styles'
+import { Wrapper } from '../styles'
 import styled from 'styled-components'
 
 export default function About() {
@@ -9,7 +9,7 @@ export default function About() {
       <StyledWrapper>
         <ImageWrapper>
           <StaticImage
-            src='../../images/me.jpg'
+            src='../images/me.jpg'
             quality='100'
             alt='Marcin Wydra'
             placeholder='blurred'
