@@ -1,5 +1,6 @@
+import Burger from './Burger'
 import { Link } from 'gatsby'
-import MenuIconSvg from '../../assets/menu-icon.inline.svg'
+// import MenuIconSvg from '../../assets/menu-icon.inline.svg'
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
@@ -8,14 +9,18 @@ const variants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { delay: 2 } },
 }
-export default function Header() {
+export default function Header({ isMenuVisible, setIsMenuVisible }) {
   return (
     <Nav variants={variants} initial='initial' animate='animate'>
       <Logo>
         <Link to='/'>Jagodajnia</Link>
       </Logo>
       <Menu>
-        <Icon />
+        {/* <Icon /> */}
+        <Burger
+          isMenuVisible={isMenuVisible}
+          setIsMenuVisible={setIsMenuVisible}
+        />
         <Links>
           <Link to='/plantacja'>Plantacja</Link>
           <Link to='/galeria'>Galeria</Link>
@@ -34,6 +39,7 @@ const Nav = styled(motion.nav)`
   width: 100%;
   min-height: 3rem;
   background-color: transparent;
+  backdrop-filter: blur(3px);
   color: ${({ theme }) => theme.colors.secondary};
   position: fixed;
   top: 0;
@@ -63,9 +69,9 @@ const Logo = styled.div`
 `
 const Menu = styled.div`
   position: absolute;
+  /* top: 15px; */
   right: 0;
   margin: 0;
-  margin-right: 8px;
   cursor: pointer;
 
   @media (min-width: 992px) {
@@ -73,15 +79,15 @@ const Menu = styled.div`
     /* display: flex; */
   }
 `
-const Icon = styled(MenuIconSvg)`
-  width: 24px;
-  height: 24px;
+// const Icon = styled(MenuIconSvg)`
+//   width: 24px;
+//   height: 24px;
 
-  @media (min-width: 992px) {
-    display: none;
-    visibility: hidden;
-  }
-`
+//   @media (min-width: 992px) {
+//     display: none;
+//     visibility: hidden;
+//   }
+// `
 
 const Links = styled.div`
   display: none;
