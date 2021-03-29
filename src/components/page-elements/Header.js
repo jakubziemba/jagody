@@ -12,7 +12,7 @@ const variants = {
 export default function Header({ isMenuVisible, setIsMenuVisible }) {
   return (
     <Nav variants={variants} initial='initial' animate='animate'>
-      <Logo>
+      <Logo isMenuVisible={isMenuVisible}>
         <Link to='/'>Jagodajnia</Link>
       </Logo>
       <Menu>
@@ -21,6 +21,7 @@ export default function Header({ isMenuVisible, setIsMenuVisible }) {
           isMenuVisible={isMenuVisible}
           setIsMenuVisible={setIsMenuVisible}
         />
+
         <Links>
           <Link to='/plantacja'>Plantacja</Link>
           <Link to='/galeria'>Galeria</Link>
@@ -58,8 +59,10 @@ const Logo = styled.div`
   text-transform: uppercase;
 
   a {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme, isMenuVisible }) =>
+      isMenuVisible ? theme.colors.primary : theme.colors.secondary};
     text-decoration: none;
+    transition: color 0.3s ease;
   }
 
   @media (min-width: 992px) {
