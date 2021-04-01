@@ -1,36 +1,15 @@
-import Burger from './Burger'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
-// import MenuIconSvg from '../../assets/menu-icon.inline.svg'
-import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+
+import { names, links } from 'utils'
+
+import Burger from './Burger'
 
 const variants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { delay: 2 } },
-}
-export default function Header({ isMenuVisible, setIsMenuVisible }) {
-  return (
-    <Nav variants={variants} initial='initial' animate='animate'>
-      <Logo isMenuVisible={isMenuVisible}>
-        <Link to='/'>Jagodajnia</Link>
-      </Logo>
-      <Menu>
-        {/* <Icon /> */}
-        <Burger
-          isMenuVisible={isMenuVisible}
-          setIsMenuVisible={setIsMenuVisible}
-        />
-
-        <Links>
-          <Link to='/plantacja'>Plantacja</Link>
-          <Link to='/galeria'>Galeria</Link>
-          <Link to='/artykuly'>Artykuły</Link>
-          <Link to='/kontakt'>Kontakt</Link>
-        </Links>
-      </Menu>
-    </Nav>
-  )
 }
 
 const Nav = styled(motion.nav)`
@@ -59,10 +38,12 @@ const Logo = styled.div`
   text-transform: uppercase;
 
   a {
-    color: ${({ theme, isMenuVisible }) =>
-      isMenuVisible ? theme.colors.primary : theme.colors.secondary};
+    color: ${({ theme, isMenuVisible, innerHeight, scrollPosition }) =>
+      isMenuVisible || scrollPosition > innerHeight
+        ? theme.colors.primary
+        : theme.colors.secondary};
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
   }
 
   @media (min-width: 992px) {
@@ -72,25 +53,10 @@ const Logo = styled.div`
 `
 const Menu = styled.div`
   position: absolute;
-  /* top: 15px; */
   right: 0;
   margin: 0;
   cursor: pointer;
-
-  @media (min-width: 992px) {
-    /* position: none; */
-    /* display: flex; */
-  }
 `
-// const Icon = styled(MenuIconSvg)`
-//   width: 24px;
-//   height: 24px;
-
-//   @media (min-width: 992px) {
-//     display: none;
-//     visibility: hidden;
-//   }
-// `
 
 const Links = styled.div`
   display: none;
@@ -110,7 +76,67 @@ const Links = styled.div`
   @media (min-width: 992px) {
     visibility: visible;
     display: flex;
-    /* justify-content: space-between; */
     padding-right: 5rem;
   }
 `
+
+const Header = ({ isMenuVisible, setIsMenuVisible }) => {
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [innerHeight, setInnerHeight] = useState(0)
+
+  useEffect(() => {
+    const setValues = () => {
+      setInnerHeight(window.innerHeight)
+      setScrollPosition(window.scrollY)
+
+      // console.log(
+      //   `Scroll position: ${scrollPosition} // innerHeight: ${innerHeight}`
+      // )
+    }
+    setValues()
+    window.addEventListener('scroll', setValues)
+    // console.log(window.innerHeight)
+
+    return () => {
+      window.removeEventListener('scroll', setValues)
+    }
+  })
+
+  return (
+    <Nav variants={variants} initial='initial' animate='animate'>
+      <Logo
+        isMenuVisible={isMenuVisible}
+        innerHeight={innerHeight}
+        scrollPosition={scrollPosition}
+      >
+        <Link to='/'>{names.JAGODAJNIA}</Link>
+      </Logo>
+      <Menu>
+        <Burger
+          isMenuVisible={isMenuVisible}
+          setIsMenuVisible={setIsMenuVisible}
+          innerHeight={innerHeight}
+          scrollPosition={scrollPosition}
+        />
+
+        <Links>
+          {links.map(link => {
+            if (link === 'Artykuły')
+              return (
+                <Link key={link} to={`/artykuly`}>
+                  {link}
+                </Link>
+              )
+            return (
+              <Link key={link} to={`/${link.toLowerCase()}`}>
+                {link}
+              </Link>
+            )
+          })}
+        </Links>
+      </Menu>
+    </Nav>
+  )
+}
+
+export default Header

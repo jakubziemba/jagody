@@ -1,9 +1,10 @@
+import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
+import Gallery from 'components/Gallery'
 import Jumbotron from 'components/page-elements/Jumbotron'
-import React from 'react'
 
-export default function Galeria() {
+const Galeria = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -20,5 +21,12 @@ export default function Galeria() {
 
   const imageData = data.placeholderImage.childImageSharp.fluid
 
-  return <Jumbotron image={imageData} title='Galeria' />
+  return (
+    <>
+      <Jumbotron image={imageData} title='Galeria' />
+      <Gallery />
+    </>
+  )
 }
+
+export default Galeria

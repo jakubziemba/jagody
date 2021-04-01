@@ -1,11 +1,11 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import useSiteMetadata from './useSiteMetadata';
+import React from 'react'
+import Helmet from 'react-helmet'
+import useSiteMetadata from './useSiteMetadata'
 
-function SEO({ description, lang, meta, title }) {
-  const siteMetadata = useSiteMetadata();
+const SEO = ({ description, lang, meta, title }) => {
+  const siteMetadata = useSiteMetadata()
 
-  const metaDescription = description || siteMetadata.description;
+  const metaDescription = description || siteMetadata.description
 
   return (
     <Helmet
@@ -33,13 +33,13 @@ function SEO({ description, lang, meta, title }) {
         },
       ].concat(meta)}
     />
-  );
+  )
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `pl`,
   meta: [],
   description: ``,
-};
+}
 
-export default SEO;
+export default SEO

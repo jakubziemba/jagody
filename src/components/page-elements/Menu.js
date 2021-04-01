@@ -1,28 +1,8 @@
 import { Link } from 'gatsby'
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
 
-export default function Menu({ isMenuVisible, setIsMenuVisible }) {
-  return (
-    <StyledMenu isMenuVisible={isMenuVisible}>
-      <Link to='/' onClick={() => setIsMenuVisible(false)}>
-        Home
-      </Link>
-      <Link to='/plantacja' onClick={() => setIsMenuVisible(false)}>
-        Plantacja
-      </Link>
-      <Link to='/galeria' onClick={() => setIsMenuVisible(false)}>
-        Galeria
-      </Link>
-      <Link to='/artykuly' onClick={() => setIsMenuVisible(false)}>
-        Artykuły
-      </Link>
-      <Link to='/kontakt' onClick={() => setIsMenuVisible(false)}>
-        Kontakt
-      </Link>
-    </StyledMenu>
-  )
-}
+import { menuLinks } from 'utils'
 
 export const StyledMenu = styled.nav`
   display: flex;
@@ -48,8 +28,6 @@ export const StyledMenu = styled.nav`
     font-size: 2rem;
     text-transform: uppercase;
     padding: 2rem 0;
-    /* font-weight: bold; */
-    /* letter-spacing: 0.5rem; */
     color: ${({ theme }) => theme.colors.primary};
     text-decoration: none;
     transition: color 0.3s linear;
@@ -64,3 +42,33 @@ export const StyledMenu = styled.nav`
     }
   }
 `
+
+const Menu = ({ isMenuVisible, setIsMenuVisible }) => {
+  const handleClick = useCallback(() => {
+    setIsMenuVisible(prevIsMenuVisible => !prevIsMenuVisible)
+  }, [isMenuVisible])
+
+  return (
+    <StyledMenu isMenuVisible={isMenuVisible}>
+      {menuLinks.map(link => {
+        if (link === 'Artykuły')
+          return (
+            <Link to={`/artykuly`} key={link} onClick={handleClick}>
+              {link}
+            </Link>
+          )
+        return (
+          <Link
+            to={`/${link === 'Home' ? '' : link.toLowerCase()}`}
+            key={link}
+            onClick={handleClick}
+          >
+            {link}
+          </Link>
+        )
+      })}
+    </StyledMenu>
+  )
+}
+
+export default Menu

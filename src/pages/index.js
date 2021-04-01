@@ -1,10 +1,12 @@
 import { graphql, useStaticQuery } from 'gatsby'
 
-import About from 'components/About'
-import Jumbotron from 'components/page-elements/Jumbotron'
 import React from 'react'
 
-export default function Home() {
+import About from 'components/About'
+import Jumbotron from 'components/page-elements/Jumbotron'
+import FadeInWhenVisible from '../hooks/FadeInWhenVisible'
+
+const Home = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -31,7 +33,11 @@ export default function Home() {
   return (
     <>
       <Jumbotron image={imageData} title={title} subtitle={subtitle} />
-      <About />
+      <FadeInWhenVisible>
+        <About />
+      </FadeInWhenVisible>
     </>
   )
 }
+
+export default Home

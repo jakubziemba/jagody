@@ -1,10 +1,9 @@
+import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import Jumbotron from 'components/page-elements/Jumbotron'
-import React from 'react'
-import styled from 'styled-components'
 
-export default function Plantacja() {
+const Plantacja = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -23,3 +22,5 @@ export default function Plantacja() {
 
   return <Jumbotron image={imageData} title='Plantacja' />
 }
+
+export default Plantacja

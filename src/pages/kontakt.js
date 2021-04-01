@@ -1,9 +1,9 @@
+import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
 import Jumbotron from 'components/page-elements/Jumbotron'
-import React from 'react'
 
-export default function Kontakt() {
+const Kontakt = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -22,3 +22,5 @@ export default function Kontakt() {
 
   return <Jumbotron image={imageData} title='Kontakt' />
 }
+
+export default Kontakt
