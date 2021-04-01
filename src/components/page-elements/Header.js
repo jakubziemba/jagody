@@ -64,13 +64,17 @@ const Links = styled.div`
 
   a {
     font-family: ${({ theme }) => theme.fonts.serif};
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme, innerHeight, scrollPosition }) =>
+      scrollPosition > innerHeight
+        ? theme.colors.primary
+        : theme.colors.secondary};
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.05rem;
     font-weight: bold;
     margin: 0 1rem;
     padding: 1rem 1rem;
+    transition: color 0.2s ease;
   }
 
   @media (min-width: 992px) {
@@ -86,7 +90,7 @@ const Header = ({ isMenuVisible, setIsMenuVisible }) => {
 
   useEffect(() => {
     const setValues = () => {
-      setInnerHeight(window.innerHeight)
+      setInnerHeight(window.innerHeight - 25)
       setScrollPosition(window.scrollY)
 
       // console.log(
@@ -119,7 +123,7 @@ const Header = ({ isMenuVisible, setIsMenuVisible }) => {
           scrollPosition={scrollPosition}
         />
 
-        <Links>
+        <Links scrollPosition={scrollPosition} innerHeight={innerHeight}>
           {links.map(link => {
             if (link === 'Artykuły')
               return (
