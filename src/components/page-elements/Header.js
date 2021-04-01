@@ -1,30 +1,15 @@
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
-import MenuIconSvg from '../../assets/menu-icon.inline.svg'
-import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+
+import { names, links } from 'utils'
+
+import Burger from './Burger'
 
 const variants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { delay: 2 } },
-}
-export default function Header() {
-  return (
-    <Nav variants={variants} initial='initial' animate='animate'>
-      <Logo>
-        <Link to='/'>Jagodajnia</Link>
-      </Logo>
-      <Menu>
-        <Icon />
-        <Links>
-          <Link to='/plantacja'>Plantacja</Link>
-          <Link to='/galeria'>Galeria</Link>
-          <Link to='/artykuly'>Artykuły</Link>
-          <Link to='/kontakt'>Kontakt</Link>
-        </Links>
-      </Menu>
-    </Nav>
-  )
 }
 
 const Nav = styled(motion.nav)`
@@ -34,6 +19,7 @@ const Nav = styled(motion.nav)`
   width: 100%;
   min-height: 3rem;
   background-color: transparent;
+  backdrop-filter: blur(3px);
   color: ${({ theme }) => theme.colors.secondary};
   position: fixed;
   top: 0;
@@ -52,8 +38,12 @@ const Logo = styled.div`
   text-transform: uppercase;
 
   a {
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme, isMenuVisible, innerHeight, scrollPosition }) =>
+      isMenuVisible || scrollPosition > innerHeight
+        ? theme.colors.primary
+        : theme.colors.secondary};
     text-decoration: none;
+    transition: color 0.2s ease;
   }
 
   @media (min-width: 992px) {
@@ -65,22 +55,7 @@ const Menu = styled.div`
   position: absolute;
   right: 0;
   margin: 0;
-  margin-right: 8px;
   cursor: pointer;
-
-  @media (min-width: 992px) {
-    /* position: none; */
-    /* display: flex; */
-  }
-`
-const Icon = styled(MenuIconSvg)`
-  width: 24px;
-  height: 24px;
-
-  @media (min-width: 992px) {
-    display: none;
-    visibility: hidden;
-  }
 `
 
 const Links = styled.div`
@@ -89,19 +64,83 @@ const Links = styled.div`
 
   a {
     font-family: ${({ theme }) => theme.fonts.serif};
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme, innerHeight, scrollPosition }) =>
+      scrollPosition > innerHeight
+        ? theme.colors.primary
+        : theme.colors.secondary};
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.05rem;
     font-weight: bold;
     margin: 0 1rem;
     padding: 1rem 1rem;
+    transition: color 0.2s ease;
   }
 
   @media (min-width: 992px) {
     visibility: visible;
     display: flex;
-    /* justify-content: space-between; */
     padding-right: 5rem;
   }
 `
+
+const Header = ({ isMenuVisible, setIsMenuVisible }) => {
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [innerHeight, setInnerHeight] = useState(0)
+
+  useEffect(() => {
+    const setValues = () => {
+      setInnerHeight(window.innerHeight - 25)
+      setScrollPosition(window.scrollY)
+
+      // console.log(
+      //   `Scroll position: ${scrollPosition} // innerHeight: ${innerHeight}`
+      // )
+    }
+    setValues()
+    window.addEventListener('scroll', setValues)
+    // console.log(window.innerHeight)
+
+    return () => {
+      window.removeEventListener('scroll', setValues)
+    }
+  })
+
+  return (
+    <Nav variants={variants} initial='initial' animate='animate'>
+      <Logo
+        isMenuVisible={isMenuVisible}
+        innerHeight={innerHeight}
+        scrollPosition={scrollPosition}
+      >
+        <Link to='/'>{names.JAGODAJNIA}</Link>
+      </Logo>
+      <Menu>
+        <Burger
+          isMenuVisible={isMenuVisible}
+          setIsMenuVisible={setIsMenuVisible}
+          innerHeight={innerHeight}
+          scrollPosition={scrollPosition}
+        />
+
+        <Links scrollPosition={scrollPosition} innerHeight={innerHeight}>
+          {links.map(link => {
+            if (link === 'Artykuły')
+              return (
+                <Link key={link} to={`/artykuly`}>
+                  {link}
+                </Link>
+              )
+            return (
+              <Link key={link} to={`/${link.toLowerCase()}`}>
+                {link}
+              </Link>
+            )
+          })}
+        </Links>
+      </Menu>
+    </Nav>
+  )
+}
+
+export default Header

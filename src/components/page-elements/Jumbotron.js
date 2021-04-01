@@ -2,83 +2,7 @@ import BackgroundImage from 'gatsby-background-image'
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-// framer-motion settings
-const transition = { duration: 1.1, ease: [0.6, 0.01, -0.05, 1.05] }
-
-const mainTitle = {
-  initial: { y: 0 },
-  animate: {
-    y: 0,
-    transition: {
-      delayChildren: 0.5,
-      staggerChildren: 0.04,
-      staggerDirection: -1,
-    },
-  },
-}
-
-const subTitle = {
-  initial: { y: 0 },
-  animate: {
-    y: 0,
-    transition: {
-      delay: 0.6,
-      delayChildren: 0.6,
-      staggerChildren: 0.04,
-      staggerDirection: 1,
-    },
-  },
-}
-const letter = {
-  initial: {
-    y: 400,
-  },
-  animate: {
-    y: 0,
-    transition: { ...transition },
-  },
-}
-
-export default function Jumbotron({ image, title, subtitle }) {
-  return (
-    <BackgroundImage Tag='section' fluid={image}>
-      <JumbotronWrapper>
-        <PageHeading>
-          <motion.div style={{ overflow: 'hidden' }}>
-            <motion.h1 variants={mainTitle} initial='initial' animate='animate'>
-              {title.split('').map((char, index) => {
-                return (
-                  <Span key={char + '-' + index} variants={letter}>
-                    {char}
-                  </Span>
-                )
-              })}
-            </motion.h1>
-          </motion.div>
-          {subtitle && (
-            <motion.div style={{ overflow: 'hidden', paddingBottom: '0.2rem' }}>
-              <motion.h3
-                variants={subTitle}
-                initial='initial'
-                animate='animate'
-              >
-                {subtitle.split('').map((char, index) => {
-                  // return space in sentence
-                  if (char === ' ') return ' '
-                  return (
-                    <Span key={char + '-' + index} variants={letter}>
-                      {char}
-                    </Span>
-                  )
-                })}
-              </motion.h3>
-            </motion.div>
-          )}
-        </PageHeading>
-      </JumbotronWrapper>
-    </BackgroundImage>
-  )
-}
+import { mainTitle, subTitle, letter } from '../../styled'
 
 const JumbotronWrapper = styled.div`
   height: 100vh;
@@ -122,3 +46,40 @@ const Span = styled(motion.span)`
   display: inline-block;
   position: relative;
 `
+
+const Jumbotron = ({ image, title, subtitle }) => (
+  <BackgroundImage Tag='section' fluid={image}>
+    <JumbotronWrapper>
+      <PageHeading>
+        <motion.div style={{ overflow: 'hidden' }}>
+          <motion.h1 variants={mainTitle} initial='initial' animate='animate'>
+            {title.split('').map((char, index) => {
+              return (
+                <Span key={`${char} - ${index}`} variants={letter}>
+                  {char}
+                </Span>
+              )
+            })}
+          </motion.h1>
+        </motion.div>
+        {subtitle && (
+          <motion.div style={{ overflow: 'hidden', paddingBottom: '0.2rem' }}>
+            <motion.h3 variants={subTitle} initial='initial' animate='animate'>
+              {subtitle.split('').map((char, index) => {
+                // return space in sentence
+                if (char === ' ') return ' '
+                return (
+                  <Span key={`${char} - ${index}`} variants={letter}>
+                    {char}
+                  </Span>
+                )
+              })}
+            </motion.h3>
+          </motion.div>
+        )}
+      </PageHeading>
+    </JumbotronWrapper>
+  </BackgroundImage>
+)
+
+export default Jumbotron

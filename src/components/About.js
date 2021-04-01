@@ -1,39 +1,9 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
-import { Wrapper } from '../styles'
 import styled from 'styled-components'
 
-export default function About() {
-  return (
-    <>
-      <StyledWrapper>
-        <ImageWrapper>
-          <StaticImage
-            src='../images/me.jpg'
-            quality='100'
-            alt='Marcin Wydra'
-            placeholder='blurred'
-            layout='fullWidth'
-          />
-        </ImageWrapper>
-        <Text>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam et
-          aperiam, blanditiis quis voluptatum odit officiis quaerat earum ullam
-          assumenda perferendis magnam provident laboriosam est libero expedita
-          voluptas rem modi. Fugit, rerum molestias ad labore modi, quos eveniet
-          doloribus repellendus aliquid sit, non mollitia. Tempore consequatur
-          dicta ducimus laudantium accusamus, reprehenderit beatae
-          necessitatibus incidunt quasi, maxime quis nihil delectus dolores.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          corrupti omnis voluptatum blanditiis vero facere quisquam similique
-          ut! Blanditiis rerum dicta saepe id, reprehenderit numquam nam sunt
-          minima labore modi. Dolores qui natus explicabo, ipsum ratione sed
-          quidem.
-        </Text>
-      </StyledWrapper>
-    </>
-  )
-}
+import { Wrapper } from '../styled'
+
 const StyledWrapper = styled(Wrapper)`
   @media (min-width: 992px) {
     padding: 5rem 5rem;
@@ -64,3 +34,32 @@ const ImageWrapper = styled.div`
     /* padding: 2rem; */
   }
 `
+
+const About = () => (
+  <StyledWrapper>
+    <ImageWrapper>
+      <StaticImage
+        src='../images/me.jpg'
+        quality='100'
+        alt='Marcin Wydra'
+        placeholder='blurred'
+        layout='fullWidth'
+      />
+    </ImageWrapper>
+    <Text>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam et aperiam,
+      blanditiis quis voluptatum odit officiis quaerat earum ullam assumenda
+      perferendis magnam provident laboriosam est libero expedita voluptas rem
+      modi. Fugit, rerum molestias ad labore modi, quos eveniet doloribus
+      repellendus aliquid sit, non mollitia. Tempore consequatur dicta ducimus
+      laudantium accusamus, reprehenderit beatae necessitatibus incidunt quasi,
+      maxime quis nihil delectus dolores. Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Dolorem, corrupti omnis voluptatum blanditiis vero
+      facere quisquam similique ut! Blanditiis rerum dicta saepe id,
+      reprehenderit numquam nam sunt minima labore modi. Dolores qui natus
+      explicabo, ipsum ratione sed quidem.
+    </Text>
+  </StyledWrapper>
+)
+
+export default About
