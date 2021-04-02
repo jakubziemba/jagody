@@ -1,7 +1,7 @@
 import React from 'react'
 
 import useQueryGallery from '../graphQL/useQueryGallery'
-import Gallery from 'components/Gallery'
+import MyGallery from 'components/Gallery'
 import Jumbotron from 'components/page-elements/Jumbotron'
 
 const Galeria = () => {
@@ -11,7 +11,7 @@ const Galeria = () => {
   return (
     <>
       <Jumbotron image={imageData} title='Galeria' />
-      <Gallery />
+      <MyGallery />
     </>
   )
 }
