@@ -1,7 +1,7 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
-
+import useQueryHome from '../graphQL/useQueryHome'
 import { Wrapper } from '../styled'
 
 const StyledWrapper = styled(Wrapper)`
@@ -35,31 +35,23 @@ const ImageWrapper = styled.div`
   }
 `
 
-const About = () => (
-  <StyledWrapper>
-    <ImageWrapper>
-      <StaticImage
-        src='../images/me.jpg'
-        quality='100'
-        alt='Marcin Wydra'
-        placeholder='blurred'
-        layout='fullWidth'
-      />
-    </ImageWrapper>
-    <Text>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam et aperiam,
-      blanditiis quis voluptatum odit officiis quaerat earum ullam assumenda
-      perferendis magnam provident laboriosam est libero expedita voluptas rem
-      modi. Fugit, rerum molestias ad labore modi, quos eveniet doloribus
-      repellendus aliquid sit, non mollitia. Tempore consequatur dicta ducimus
-      laudantium accusamus, reprehenderit beatae necessitatibus incidunt quasi,
-      maxime quis nihil delectus dolores. Lorem ipsum dolor sit amet consectetur
-      adipisicing elit. Dolorem, corrupti omnis voluptatum blanditiis vero
-      facere quisquam similique ut! Blanditiis rerum dicta saepe id,
-      reprehenderit numquam nam sunt minima labore modi. Dolores qui natus
-      explicabo, ipsum ratione sed quidem.
-    </Text>
-  </StyledWrapper>
-)
+const About = () => {
+  const data = useQueryHome()
+  const { text } = data.prismicHome.data
+  return (
+    <StyledWrapper>
+      <ImageWrapper>
+        <StaticImage
+          src='../images/tato.jpg'
+          quality='100'
+          alt='Marcin Wydra'
+          placeholder='blurred'
+          layout='fullWidth'
+        />
+      </ImageWrapper>
+      <Text>{text}</Text>
+    </StyledWrapper>
+  )
+}
 
 export default About

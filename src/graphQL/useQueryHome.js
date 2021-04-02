@@ -11,11 +11,14 @@ const useQueryHome = () => {
             }
           }
         }
-        markdownRemark(frontmatter: { templateKey: { eq: "index" } }) {
-          frontmatter {
-            templateKey
-            title
+        prismicHome {
+          data {
             subtitle
+            title
+            text
+            myimg {
+              url
+            }
           }
         }
       }

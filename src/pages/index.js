@@ -7,7 +7,7 @@ import FadeInWhenVisible from '../hooks/FadeInWhenVisible'
 
 const Home = () => {
   const data = useQueryHome()
-  const { title, subtitle } = data.markdownRemark.frontmatter
+  const { title, subtitle } = data.prismicHome.data
   const imageData = data.placeholderImage.childImageSharp.fluid
 
   return (

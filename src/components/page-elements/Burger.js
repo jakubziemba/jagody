@@ -62,7 +62,7 @@ const Burger = ({
 }) => {
   const handleClick = useCallback(() => {
     setIsMenuVisible(prevIsMenuVisible => !prevIsMenuVisible)
-  }, [isMenuVisible])
+  }, [setIsMenuVisible])
 
   return (
     <StyledBurger
