@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
 
 import useQueryContact from '../graphQL/useQueryContact'
 import Jumbotron from 'components/page-elements/Jumbotron'
