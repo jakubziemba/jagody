@@ -27,17 +27,49 @@ const PageHeading = styled.div`
     font-family: ${({ theme }) => theme.fonts.serif};
     text-transform: uppercase;
     font-size: 0.8rem;
-    /* padding-bottom: 0.5rem; */
+  }
+
+  @media (min-width: 375px) {
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 480px) {
+    h1 {
+      font-size: 4rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 650px) {
+    h1 {
+      font-size: 5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 770px) {
+    h1 {
+      font-size: 7rem;
+      margin-bottom: 1rem;
+    }
   }
 
   @media (min-width: 992px) {
     h1 {
       font-size: 8rem;
       margin-bottom: 1.4rem;
-    }
-
-    h3 {
-      font-size: 1.5rem;
     }
   }
 `

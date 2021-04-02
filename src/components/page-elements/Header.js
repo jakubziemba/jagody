@@ -25,9 +25,12 @@ const Nav = styled(motion.nav)`
   top: 0;
   z-index: 10;
 
+  @media (min-width: 650px) {
+    min-height: 4rem;
+  }
+
   @media (min-width: 992px) {
     justify-content: space-between;
-    min-height: 4rem;
   }
 `
 
@@ -44,6 +47,10 @@ const Logo = styled.div`
         : theme.colors.secondary};
     text-decoration: none;
     transition: color 0.2s ease;
+  }
+
+  @media (min-width: 650px) {
+    font-size: 1.7rem;
   }
 
   @media (min-width: 992px) {

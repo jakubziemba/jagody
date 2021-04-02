@@ -16,6 +16,11 @@ const StyledBurger = styled.button`
   padding: 0;
   z-index: 10;
 
+  @media (min-width: 650px) {
+    width: 22px;
+    height: 21px;
+  }
+
   @media (min-width: 992px) {
     display: none;
     visibility: hidden;
@@ -50,6 +55,10 @@ const StyledBurger = styled.button`
     :nth-child(3) {
       transform: ${({ isMenuVisible }) =>
         isMenuVisible ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
+
+    @media (min-width: 650px) {
+      width: 22px;
     }
   }
 `
