@@ -9,8 +9,6 @@ const MyGallery = () => {
   const data = useQueryGallery()
   const images = data.allFile.edges.map(({ node }) => node.childImageSharp)
 
-  console.log(data.allFile.edges.map(({ node }) => node.childImageSharp))
-
   return (
     <Wrapper>
       <FadeInWhenVisible>
