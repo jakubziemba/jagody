@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { Wrapper } from '../styled'
 import Jumbotron from 'components/page-elements/Jumbotron'
 
 const Text = styled.div`
@@ -8,13 +9,23 @@ const Text = styled.div`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 1.3rem;
   line-height: 1.8;
-  padding: 2rem;
+  padding: 1rem 0rem 3rem;
+
+  @media (min-width: 992px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `
-export default function Article({ text, title, imageData }) {
+
+const Article = ({ text, title, imageData }) => {
   return (
     <>
       <Jumbotron image={imageData} title={title} />
-      <Text>{text}</Text>
+      <Wrapper>
+        <Text>{text}</Text>
+      </Wrapper>
     </>
   )
 }
+
+export default Article

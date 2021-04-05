@@ -1,8 +1,10 @@
 import React from 'react'
 import { StaticImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
+
 import useQueryHome from '../graphQL/useQueryHome'
 import { Wrapper } from '../styled'
+import FadeInWhenVisible from '../hooks/FadeInWhenVisible'
 
 const StyledWrapper = styled(Wrapper)`
   @media (min-width: 992px) {
@@ -39,18 +41,20 @@ const About = () => {
   const data = useQueryHome()
   const { text } = data.prismicHome.data
   return (
-    <StyledWrapper>
-      <ImageWrapper>
-        <StaticImage
-          src='../images/tato.jpg'
-          quality='100'
-          alt='Marcin Wydra'
-          placeholder='blurred'
-          layout='fullWidth'
-        />
-      </ImageWrapper>
-      <Text>{text}</Text>
-    </StyledWrapper>
+    <FadeInWhenVisible>
+      <StyledWrapper>
+        <ImageWrapper>
+          <StaticImage
+            src='../images/tato.jpg'
+            quality='100'
+            alt='Marcin Wydra'
+            placeholder='blurred'
+            layout='fullWidth'
+          />
+        </ImageWrapper>
+        <Text>{text}</Text>
+      </StyledWrapper>
+    </FadeInWhenVisible>
   )
 }
 
