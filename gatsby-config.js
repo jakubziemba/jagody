@@ -36,7 +36,7 @@ module.exports = {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'jagoda',
-        accessToken: '',
+        accessToken: `${process.env.GATSBY_PRISMIC}`,
         linkResolver: ({ node, key, value }) => doc => {},
         fetchLinks: [],
         htmlSerializer: ({ node, key, value }) => (
