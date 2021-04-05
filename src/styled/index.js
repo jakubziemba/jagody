@@ -44,7 +44,7 @@ export const Wrapper = styled.section`
   max-width: 75rem;
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem 1rem 4rem;
 `
 
 export const Title = styled.div`

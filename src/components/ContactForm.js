@@ -77,13 +77,15 @@ const ButtonWrapper = styled.div`
 `
 
 const Button = styled.button`
-  width: 4rem;
-  height: 2rem;
+  /* width: 4rem; */
+  /* height: 2rem; */
+  padding: 0.75rem 2rem;
   margin: 0.5rem;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.secondary};
   border: none;
   cursor: pointer;
+  font-size: 1rem;
 `
 
 const ContactForm = ({ action }) => {
