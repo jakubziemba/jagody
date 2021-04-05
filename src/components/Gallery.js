@@ -10,11 +10,11 @@ const MyGallery = () => {
   const images = data.allFile.edges.map(({ node }) => node.childImageSharp)
 
   return (
-    <Wrapper>
-      <FadeInWhenVisible>
+    <FadeInWhenVisible>
+      <Wrapper>
         <Gallery images={images} />
-      </FadeInWhenVisible>
-    </Wrapper>
+      </Wrapper>
+    </FadeInWhenVisible>
   )
 }
 

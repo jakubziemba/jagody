@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 
 import { names, links } from 'utils'
 
@@ -66,9 +67,6 @@ const Menu = styled.div`
 `
 
 const Links = styled.div`
-  display: none;
-  visibility: hidden;
-
   a {
     font-family: ${({ theme }) => theme.fonts.serif};
     color: ${({ theme, innerHeight, scrollPosition }) =>
@@ -87,11 +85,13 @@ const Links = styled.div`
   @media (min-width: 992px) {
     visibility: visible;
     display: flex;
-    padding-right: 5rem;
+    padding-right: 3rem;
   }
 `
 
 const Header = ({ isMenuVisible, setIsMenuVisible }) => {
+  const isDesktop = useMediaQuery({ minWidth: 992 })
+
   const [scrollPosition, setScrollPosition] = useState(0)
   const [innerHeight, setInnerHeight] = useState(0)
 
@@ -99,14 +99,9 @@ const Header = ({ isMenuVisible, setIsMenuVisible }) => {
     const setValues = () => {
       setInnerHeight(window.innerHeight - 25)
       setScrollPosition(window.scrollY)
-
-      // console.log(
-      //   `Scroll position: ${scrollPosition} // innerHeight: ${innerHeight}`
-      // )
     }
     setValues()
     window.addEventListener('scroll', setValues)
-    // console.log(window.innerHeight)
 
     return () => {
       window.removeEventListener('scroll', setValues)
@@ -123,28 +118,32 @@ const Header = ({ isMenuVisible, setIsMenuVisible }) => {
         <Link to='/'>{names.JAGODAJNIA}</Link>
       </Logo>
       <Menu>
-        <Burger
-          isMenuVisible={isMenuVisible}
-          setIsMenuVisible={setIsMenuVisible}
-          innerHeight={innerHeight}
-          scrollPosition={scrollPosition}
-        />
+        {!isDesktop && (
+          <Burger
+            isMenuVisible={isMenuVisible}
+            setIsMenuVisible={setIsMenuVisible}
+            innerHeight={innerHeight}
+            scrollPosition={scrollPosition}
+          />
+        )}
 
-        <Links scrollPosition={scrollPosition} innerHeight={innerHeight}>
-          {links.map(link => {
-            if (link === 'Artykuły')
+        {isDesktop && (
+          <Links scrollPosition={scrollPosition} innerHeight={innerHeight}>
+            {links.map(link => {
+              if (link === 'Artykuły')
+                return (
+                  <Link key={link} to={`/artykuly`}>
+                    {link}
+                  </Link>
+                )
               return (
-                <Link key={link} to={`/artykuly`}>
+                <Link key={link} to={`/${link.toLowerCase()}`}>
                   {link}
                 </Link>
               )
-            return (
-              <Link key={link} to={`/${link.toLowerCase()}`}>
-                {link}
-              </Link>
-            )
-          })}
-        </Links>
+            })}
+          </Links>
+        )}
       </Menu>
     </Nav>
   )

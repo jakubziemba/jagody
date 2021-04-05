@@ -86,6 +86,7 @@ const Jumbotron = ({ image, title, subtitle }) => (
         <motion.div style={{ overflow: 'hidden' }}>
           <motion.h1 variants={mainTitle} initial='initial' animate='animate'>
             {title.split('').map((char, index) => {
+              if (char === ' ') return ' '
               return (
                 <Span key={`${char} - ${index}`} variants={letter}>
                   {char}
@@ -98,7 +99,6 @@ const Jumbotron = ({ image, title, subtitle }) => (
           <motion.div style={{ overflow: 'hidden', paddingBottom: '0.2rem' }}>
             <motion.h3 variants={subTitle} initial='initial' animate='animate'>
               {subtitle.split('').map((char, index) => {
-                // return space in sentence
                 if (char === ' ') return ' '
                 return (
                   <Span key={`${char} - ${index}`} variants={letter}>

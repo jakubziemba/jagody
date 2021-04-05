@@ -41,10 +41,10 @@ export const letter = {
 export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  max-width: 120rem;
+  max-width: 75rem;
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem 1rem 4rem;
 `
 
 export const Title = styled.div`

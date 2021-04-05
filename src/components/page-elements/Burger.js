@@ -16,16 +16,6 @@ const StyledBurger = styled.button`
   padding: 0;
   z-index: 10;
 
-  @media (min-width: 650px) {
-    width: 22px;
-    height: 21px;
-  }
-
-  @media (min-width: 992px) {
-    display: none;
-    visibility: hidden;
-  }
-
   &:focus {
     outline: none;
   }
@@ -71,7 +61,7 @@ const Burger = ({
 }) => {
   const handleClick = useCallback(() => {
     setIsMenuVisible(prevIsMenuVisible => !prevIsMenuVisible)
-  }, [isMenuVisible])
+  }, [setIsMenuVisible])
 
   return (
     <StyledBurger

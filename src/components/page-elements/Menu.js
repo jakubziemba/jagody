@@ -46,7 +46,7 @@ export const StyledMenu = styled.nav`
 const Menu = ({ isMenuVisible, setIsMenuVisible }) => {
   const handleClick = useCallback(() => {
     setIsMenuVisible(prevIsMenuVisible => !prevIsMenuVisible)
-  }, [isMenuVisible])
+  }, [setIsMenuVisible])
 
   return (
     <StyledMenu isMenuVisible={isMenuVisible}>
